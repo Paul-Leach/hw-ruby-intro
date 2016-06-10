@@ -3,33 +3,53 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  tot = 0
+  arr.each do |i| tot += i end
+  tot
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  t = arr.sort.reverse
+  return 0 if  t[0] == nil
+  return t[0] if t[1] == nil
+  return t[0] + t[1]
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+  arr.each_with_index { |x, ix|
+    arr.each_with_index {|y, iy| 
+    return true if ix != iy && x+y == n }
+  }
+  return false
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, " + name.to_s
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  /^[a-z&&[^aeiou]]/i =~ s
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  s != '' &&
+  (/^[01]*$/ =~ s) != nil &&
+  s.to_i(2) % 4 == 0
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  def initialize(isbn, price)
+    raise ArgumentError if isbn == '' || price <= 0
+    @isbn = isbn
+    @price = price
+  end
+  attr_accessor :isbn
+  attr_accessor :price
+  def price_as_string
+    sprintf "$%.2f", price.round(2)
+  end
 end
